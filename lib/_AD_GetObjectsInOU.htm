@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Function _AD_GetObjectsInOU</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<h1>Function Reference</h1>
+<font size="+1">_AD_GetObjectsInOU</font>
+<hr size="2">
+<p>Returns a filtered array of objects and attributes for a given OU or just the number of records if $bCount is True.<br></p>
+
+<p class="codeheader">
+#Include &lt;AD.au3&gt;<br>
+_AD_GetObjectsInOU($sOU[, $sFilter = "(name=*)"[, $iSearchScope = 2[, $sDataToRetrieve = "sAMAccountName"[, $sSortBy = "sAMAccountName"[, $bCount = False[, $vReturnNull = True]]]]])<br>
+</p>
+<p>&nbsp;</p>
+
+<p><b>Parameters</b></p>
+<table border="1" width="100%" cellspacing="0" cellpadding="3" bordercolor="#C0C0C0">
+  <tr>
+    <td width="15%">$sOU</td>
+    <td width="85%">The OU to retrieve from (FQDN) (default = "", equals "search the whole AD tree")</td>
+  </tr>
+  <tr>
+   <td>$sFilter</td>
+   <td>	<b>[optional]</b> An additional LDAP filter if required (default = "(name=*)")</td>
+  </tr>
+  <tr>
+   <td>$iSearchScope</td>
+   <td>	<b>[optional]</b> 0 = base, 1 = one-level, 2 = sub-tree (default)</td>
+  </tr>
+  <tr>
+   <td>$sDataToRetrieve</td>
+   <td>	<b>[optional]</b> A comma-seperated list of attributes to retrieve (default = "sAMAccountName").<br>
+       More than one attribute will create a 2-dimensional array</td>
+  </tr>
+  <tr>
+   <td>$sSortBy</td>
+   <td>	<b>[optional]</b> name of the attribute the resulting array will be sorted upon (default = "sAMAccountName").<br>
+       To completely suppress sorting (even the default sort) set this parameter to "". This improves performance when doing large queries</td>
+  </tr>
+  <tr>
+   <td>$bCount</td>
+   <td>	<b>[optional]</b> If set to True only returns the number of records returned by the query (default = False)</td>
+  </tr>
+  <tr>
+   <td>$vReturnNull</td>
+   <td>	<b>[optional]</b> If set to any other value but True Null values (occur when the property has never been set) are returned as this value (default = True)</td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<p><b>Return Value</b></p>
+Success: Number of records retrieved or a one or two dimensional one-based array of objects and attributes in the given OU. First entry is for the given OU itself<br>
+Failure: "", sets @error to:<br>
+&nbsp;&nbsp;&nbsp; 1 - Specified OU does not exist<br>
+&nbsp;&nbsp;&nbsp; 2 - No records returned from Active Directory. $sDataToRetrieve is invalid (attribute may not exist). @extended is set to the error returned by LDAP<br>
+&nbsp;&nbsp;&nbsp; 3 - No records returned from Active Directory. $sFilter didn't return a record<br>
+<p>&nbsp;</p>
+
+<p><b>Remarks</b></p>
+Multi-value attributes are returned as string with the pipe character (|) as separator.<br>
+<br>
+The default filter returns an array including one record for the OU itself. To exclude the OU use a different filter that doesn't include the OU<br>
+e.g. "(&(objectcategory=person)(objectclass=user)(name=*))"<br>
+<br>
+To make sure that all properties you specify in $sDataToRetrieve exist in the AD you can use _AD_ObjectExistsInSchema.<br>
+<br>
+The following examples illustrate the use of the escaping mechanism in the LDAP filter:<br>
+(o=Parens R Us \28for all your parenthetical needs\29)<br>
+(cn=*\2A*)<br>
+(filename=C:\5cMyFile)<br>
+(bin=\00\00\00\04)<br>
+(sn=Lu\c4\8di\c4\87)<br>
+The first example shows the use of the escaping mechanism to represent parenthesis characters.<br>
+The second shows how to represent a "*" in a value, preventing it from being interpreted as a substring indicator.<br>
+The third illustrates the escaping of the backslash character.<br>
+The fourth example shows a filter searching for the four-byte value 0x00000004, illustrating the use of the escaping mechanism to<br>
+represent arbitrary data, including NUL characters.<br>
+The final example illustrates the use of the escaping mechanism to represent various non-ASCII UTF-8 characters.<br>
+<br>
+<p>&nbsp;</p>
+
+<p><b>Related</b></p>
+<a href="_AD_GetAllOUs.htm">_AD_GetAllOUs</a>
+<p>&nbsp;</p>
+
+</body>
+</html>

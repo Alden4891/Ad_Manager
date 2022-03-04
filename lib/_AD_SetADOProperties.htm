@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Function _AD_SetADOProperties</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<h1>Function Reference</h1>
+<font size="+1">_AD_SetADOProperties</font>
+<hr size="2">
+<p>Sets properties of an ADO command object.<br></p>
+
+<p class="codeheader">
+#Include &lt;AD.au3&gt;<br>
+_AD_SetADOProperties($sP1 = ""[, $sP2 = ""[, $sP3 = ""[, $sP4 = ""[, $sP5 = ""[, $sP6 = ""[, $sP7 = ""[, $sP8 = ""[, $sP9 = ""[, $sP10 = ""]]]]]]]]])<br>
+</p>
+<p>&nbsp;</p>
+
+<p><b>Parameters</b></p>
+<table border="1" width="100%" cellspacing="0" cellpadding="3" bordercolor="#C0C0C0">
+  <tr>
+    <td width="15%">$sP1</td>
+    <td width="85%">Property to set. This can be a string with the format propertyname=value OR<br>
+       a zero based one-dimensional array with unlimited number of strings in the format propertyname=value</td>
+  </tr>
+  <tr>
+   <td>$sP2</td>
+   <td>	<b>[optional]</b> Same as $sP1 but no array is allowed</td>
+  </tr>
+  <tr>
+   <td>$sP3</td>
+   <td>	<b>[optional]</b> Same as $sP2</td>
+  </tr>
+  <tr>
+   <td>$sP4</td>
+   <td>	<b>[optional]</b> Same as $sP2</td>
+  </tr>
+  <tr>
+   <td>$sP5</td>
+   <td>	<b>[optional]</b> Same as $sP2</td>
+  </tr>
+  <tr>
+   <td>$sP6</td>
+   <td>	<b>[optional]</b> Same as $sP2</td>
+  </tr>
+  <tr>
+   <td>$sP7</td>
+   <td>	<b>[optional]</b> Same as $sP2</td>
+  </tr>
+  <tr>
+   <td>$sP8</td>
+   <td>	<b>[optional]</b> Same as $sP2</td>
+  </tr>
+  <tr>
+   <td>$sP9</td>
+   <td>	<b>[optional]</b> Same as $sP2</td>
+  </tr>
+  <tr>
+   <td>$sP10</td>
+   <td>	<b>[optional]</b> Same as $sP2</td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<p><b>Return Value</b></p>
+Success: 1<br>
+Failure: 0, sets @error to:<br>
+&nbsp;&nbsp;&nbsp; 1 - Invalid format of the parameter. Has to be propertyname=value. @extended = number of the invalid parameter (zero based)<br>
+&nbsp;&nbsp;&nbsp; x - Error setting the specified property. @extended = number of the invalid parameter (zero based)<br>
+<p>&nbsp;</p>
+
+<p><b>Remarks</b></p>
+You can query the properties of the ADO connection and command object but you can only set the properties of the command object.<br>
++After the connection is opened by _AD_Open the properties of the connection object are read only.<br>
+<br>
+<p>&nbsp;</p>
+
+<p><b>Related</b></p>
+
+<p>&nbsp;</p>
+
+<p><b>See Also</b></p>
+ADO Command: http://msdn.microsoft.com/en-us/library/ms675022(v=VS.85).aspx<br>
+<p>&nbsp;</p>
+</body>
+</html>

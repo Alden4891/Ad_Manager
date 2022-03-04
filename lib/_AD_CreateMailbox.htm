@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Function _AD_CreateMailbox</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<h1>Function Reference</h1>
+<font size="+1">_AD_CreateMailbox</font>
+<hr size="2">
+<p>Creates a mailbox for a user.<br></p>
+
+<p class="codeheader">
+#Include &lt;AD.au3&gt;<br>
+_AD_CreateMailbox($sUser, $sStoreName[, $sStore[, $sEMailServer[, $sAdminGroup[, $sEmailDomain]]]])<br>
+</p>
+<p>&nbsp;</p>
+
+<p><b>Parameters</b></p>
+<table border="1" width="100%" cellspacing="0" cellpadding="3" bordercolor="#C0C0C0">
+  <tr>
+    <td width="15%">$sUser</td>
+    <td width="85%">User account (sAMAccountName or FQDN) to add mailbox to</td>
+  </tr>
+  <tr>
+   <td>$sStoreName</td>
+   <td>Mailbox storename</td>
+  </tr>
+  <tr>
+   <td>$sStore</td>
+   <td>	<b>[optional]</b> Information store (Default = "First Storage Group")</td>
+  </tr>
+  <tr>
+   <td>$sEmailServer</td>
+   <td>	<b>[optional]</b> Email server (Default = First server returned by _AD_ListExchangeServers())</td>
+  </tr>
+  <tr>
+   <td>$sAdminGroup</td>
+   <td>	<b>[optional]</b> Administrative group in Exchange (Default= "First Administrative Group")</td>
+  </tr>
+  <tr>
+   <td>$sEmailDomain</td>
+   <td>	<b>[optional]</b> Exchange Server Group name e.g. "My Company" (Default = Text after first DC= in $sAD_DNSDomain)</td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<p><b>Return Value</b></p>
+Success: 1<br>
+Failure: 0, sets @error to:<br>
+&nbsp;&nbsp;&nbsp; 1 - $sUser does not exist<br>
+&nbsp;&nbsp;&nbsp; 2 - $sUser already has a mailbox<br>
+&nbsp;&nbsp;&nbsp; 3 - _AD_ListExchangeServers() returned an error. Please see @extended for _AD_ListExchangeServers() return code<br>
+&nbsp;&nbsp;&nbsp; x - Error returned by CreateMailbox or SetInfo method (Missing permission etc.)<br>
+<p>&nbsp;</p>
+
+<p><b>Remarks</b></p>
+The mailbox is created using CDOEXM. For this function to work the Exchange administration tools have to be installed on the<br>
+computer running the script.<br>
+To set rights on the mailbox you have to run at least Exchange 2000 SP2.<br>
+<br>
+If the Exchange administration tools are not installed on the PC running the script you could use an ADSI only solution.<br>
+Set the mailNickname and displayName properties of the user and at least one of this: homeMTA, homeMDB or msExchHomeServerName and<br>
+the RUS (Recipient Update Service) of Exchange 2000/2003 will create the mailbox for you.<br>
+Be aware that this no longer works for Exchange 2007 and later.<br>
+<br>
+<p>&nbsp;</p>
+
+<p><b>Related</b></p>
+
+<p>&nbsp;</p>
+
+<p><b>See Also</b></p>
+http://www.msxfaq.de/code/makeuser.htm<br>
+<p>&nbsp;</p>
+</body>
+</html>

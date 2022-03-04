@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Function _AD_CreateMailboxPS</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<h1>Function Reference</h1>
+<font size="+1">_AD_CreateMailboxPS</font>
+<hr size="2">
+<p>Creates a mailbox for a user using PowerShell<br></p>
+
+<p class="codeheader">
+#Include &lt;AD.au3&gt;<br>
+_AD_CreateMailboxPS($sUser, $sURI[, $sSessionParam = Default[, $sMailboxParam = Default[, $iRunShowFlag = Default]])<br>
+</p>
+<p>&nbsp;</p>
+
+<p><b>Parameters</b></p>
+<table border="1" width="100%" cellspacing="0" cellpadding="3" bordercolor="#C0C0C0">
+  <tr>
+    <td width="15%">$sUser</td>
+    <td width="85%">User account (SamAccountName or FQDN) for which you want to create the mailbox</td>
+  </tr>
+  <tr>
+   <td>$sURI</td>
+   <td>Specifies a URI that defines the connection endpoint for the session. The URI must be fully qualified.</td>
+  </tr>
+  <tr>
+   <td>$sSessionParam</td>
+   <td>	<b>[optional]</b> One or multiple additional parameters for the PowerShell "Session" command e.g. " -Authentication Kerberos"</td>
+  </tr>
+  <tr>
+   <td>$sMailboxParam</td>
+   <td>	<b>[optional]</b> One or multiple additional parameters for the PowerShell "Enable-Mailbox" command (see parameter $sSessionParam)</td>
+  </tr>
+  <tr>
+   <td>$iRunShowFlag</td>
+   <td>	<b>[optional]</b> Sets the show-flag parameter of the Run command. Default = Default keyword</td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<p><b>Return Value</b></p>
+Success: Zero based one-dimensional array holding the StdOut messages written by PowerShell<br>
+Failure: "", sets @error to:<br>
+&nbsp;&nbsp;&nbsp; 1 - $sUser does not exist<br>
+&nbsp;&nbsp;&nbsp; 2 - $sUser already has a mailbox<br>
+&nbsp;&nbsp;&nbsp; 3 - $sUser is invalid (empty)<br>
+&nbsp;&nbsp;&nbsp; 4 - $sURI is invalid (empty)<br>
+&nbsp;&nbsp;&nbsp; 5 - Run returned an error (PowerShell could not be started). @extended is set to the @error returned by Run<br>
+&nbsp;&nbsp;&nbsp; 6 - Writing to StdIn returned an error. @extended is set to the @error returned by StdinWrite<br>
+Failure: Zero based one-dimensional array holding the StdErr messages written by PowerShell, sets error to:<br>
+&nbsp;&nbsp;&nbsp; 7 - PowerShell has written some error messages to StdErr.<br>
+<p>&nbsp;</p>
+
+<p><b>Remarks</b></p>
+The mailbox is created using PowerShell. No additional tools need to be installed on the local mchine.<br>
+<br>
+<p>&nbsp;</p>
+
+<p><b>Related</b></p>
+
+<p>&nbsp;</p>
+
+</body>
+</html>

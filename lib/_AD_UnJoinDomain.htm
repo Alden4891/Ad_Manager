@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Function _AD_UnJoinDomain</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<h1>Function Reference</h1>
+<font size="+1">_AD_UnJoinDomain</font>
+<hr size="2">
+<p>Unjoins the computer from its current domain and disables the computer account.<br></p>
+
+<p class="codeheader">
+#Include &lt;AD.au3&gt;<br>
+_AD_UnJoinDomain([$sComputer = @ComputerName[, $sWorkgroup = ""[,$sUserParam, = "", $sPasswordParam = ""]]])<br>
+</p>
+<p>&nbsp;</p>
+
+<p><b>Parameters</b></p>
+<table border="1" width="100%" cellspacing="0" cellpadding="3" bordercolor="#C0C0C0">
+  <tr>
+    <td width="15%">$sComputer</td>
+    <td width="85%">	<b>[optional]</b> Computername to unjoin from the domain (Default = @ComputerName)</td>
+  </tr>
+  <tr>
+   <td>$sWorkgroup</td>
+   <td>	<b>[optional]</b> Workgroup the unjoined computer is assigned to (Default = Workgroup named like the domain the computer was unjoined from)</td>
+  </tr>
+  <tr>
+   <td>$sUserParam</td>
+   <td>	<b>[optional]</b> Domain user with admin rights to unjoin the computer from the domain.<br>
+       Supported are NetBIOSName (domain\user), user principal name (user@domain) or Windows login name (user).<br>
+       (Default = credentials from _AD_Open or - if not used - of the user running the script)</td>
+  </tr>
+  <tr>
+   <td>$sPasswordParam</td>
+   <td>	<b>[optional]</b> Password for $sUserParam (Default = credentials from _AD_Open or - if not used - of the user running the script)</td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<p><b>Return Value</b></p>
+Success: 1<br>
+Failure: 0, @error set<br>
+&nbsp;&nbsp;&nbsp; 1 - $sComputer account does not exist in the domain<br>
+&nbsp;&nbsp;&nbsp; 2 - $sUserParam does not exist in the domain<br>
+&nbsp;&nbsp;&nbsp; 3 - WMI object could not be created. See @extended for the COM error code. See remarks for further information<br>
+&nbsp;&nbsp;&nbsp; 4 - The computer is a member of another or no domain<br>
+&nbsp;&nbsp;&nbsp; 5 - Unjoining the domain was not successful. See @extended for the COM error code. See remarks for further information<br>
+&nbsp;&nbsp;&nbsp; 6 - Joining the Computer to the specified workgroup was not successful. See @extended for the COM error code<br>
+<p>&nbsp;</p>
+
+<p><b>Remarks</b></p>
+This function allows to unjoin the computer the script is running on or any other computer from a domain.<br>
+The domain the computer is unjoined from is the domain the user logged on to by using AD_Open.<br>
+If no credentials are passed to this function but have been used with _AD_Open() then the _AD_Open credentials will be used.<br>
+If no workgroup is specified then the computer is assigned to a workgroup named like the domain the computer was unjoined from.<br>
+You have to reboot the computer after a successful unjoin from the domain.<br>
+The JoinDomainOrWorkgroup method is available only on Windows XP computer and Windows Server 2003 or later.<br>
+<br>
+<p>&nbsp;</p>
+
+<p><b>Related</b></p>
+
+<p>&nbsp;</p>
+
+<p><b>See Also</b></p>
+http://gallery.technet.microsoft.com/ScriptCenter/en-us/c2025ace-cb51-4136-9de9-db8871f79f62, http://technet.microsoft.com/en-us/library/ee692588.aspx, http://msdn.microsoft.com/en-us/library/aa393942(VS.85).aspx<br>
+<p>&nbsp;</p>
+</body>
+</html>

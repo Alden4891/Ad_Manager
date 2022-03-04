@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Function _AD_ListPrintQueues</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<h1>Function Reference</h1>
+<font size="+1">_AD_ListPrintQueues</font>
+<hr size="2">
+<p>Enumerates all PrintQueues in the AD tree, the specified spool server or OU.<br></p>
+
+<p class="codeheader">
+#Include &lt;AD.au3&gt;<br>
+_AD_ListPrintQueues([$sServername="*"[, $sOU = ""[, $iSearchScope = 2, [$sPrintQueues="*"]]])<br>
+</p>
+<p>&nbsp;</p>
+
+<p><b>Parameters</b></p>
+<table border="1" width="100%" cellspacing="0" cellpadding="3" bordercolor="#C0C0C0">
+  <tr>
+    <td width="15%">$sServername</td>
+    <td width="85%">	<b>[optional]</b> Short name of the spool server to process. LDAP wildcards apply (default = "*", equals "search all servers")</td>
+  </tr>
+  <tr>
+   <td>$sOU</td>
+   <td>	<b>[optional]</b> The OU to retrieve from (FQDN) (default = "", equals "search the whole AD tree")</td>
+  </tr>
+  <tr>
+   <td>$iSearchScope</td>
+   <td>	<b>[optional]</b> 0 = base, 1 = one-level, 2 = sub-tree (default)</td>
+  </tr>
+  <tr>
+   <td>$sPrintQueues</td>
+   <td>	<b>[optional]</b> Short name of the printqueues to search for. LDAP wildcards apply (default = "*", equals "search all print queues")</td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<p><b>Return Value</b></p>
+Success: One-based two dimensional array with the following information:<br>
+&nbsp;&nbsp;&nbsp; 0 - PrinterName: Short name of the PrintQueue<br>
+&nbsp;&nbsp;&nbsp; 1 - ServerName: SpoolServerName.Domain<br>
+&nbsp;&nbsp;&nbsp; 2 - DistinguishedName: FQDN of the PrintQueue<br>
+Failure: "", @error set<br>
+&nbsp;&nbsp;&nbsp; 1 - There is no PrintQueue available. @extended is set to the error returned by LDAP<br>
+&nbsp;&nbsp;&nbsp; 2 - Specified OU does not exist<br>
+<p>&nbsp;</p>
+
+<p><b>Remarks</b></p>
+To get more (including multi-valued) attributes of a printqueue use _AD_GetObjectProperties<br>
+<br>
+<p>&nbsp;</p>
+
+<p><b>Related</b></p>
+
+<p>&nbsp;</p>
+
+<p><b>See Also</b></p>
+http://msdn.microsoft.com/en-us/library/aa706091(VS.85).aspx, http://www.activxperts.com/activmonitor/windowsmanagement/scripts/printing/printerport/#LAPP.htm<br>
+<p>&nbsp;</p>
+</body>
+</html>

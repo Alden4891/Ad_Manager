@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Function _AD_IsAccountExpired</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<h1>Function Reference</h1>
+<font size="+1">_AD_IsAccountExpired</font>
+<hr size="2">
+<p>Returns 1 if the account (user, computer) has expired.<br></p>
+
+<p class="codeheader">
+#Include &lt;AD.au3&gt;<br>
+_AD_IsAccountExpired([$sObject = @Username])<br>
+</p>
+<p>&nbsp;</p>
+
+<p><b>Parameters</b></p>
+<table border="1" width="100%" cellspacing="0" cellpadding="3" bordercolor="#C0C0C0">
+  <tr>
+    <td width="15%">$sObject</td>
+    <td width="85%">	<b>[optional]</b> Account (User, computer) to check (default = @Username). Can be specified as Fully Qualified Domain Name (FQDN) or sAMAccountName</td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<p><b>Return Value</b></p>
+Success: 1, The specified account has expired<br>
+Failure: 0, sets @error to:<br>
+&nbsp;&nbsp;&nbsp; 0 - Account has not expired<br>
+&nbsp;&nbsp;&nbsp; 1 - $sObject could not be found<br>
+&nbsp;&nbsp;&nbsp; 2 - An error occurred when accessing property AccountExpirationDate. @extended is set to the error returned by LDAP<br>
+<p>&nbsp;</p>
+
+<p><b>Remarks</b></p>
+None.<br>
+<br>
+<p>&nbsp;</p>
+
+<p><b>Related</b></p>
+<a href="_AD_GetAccountsExpired.htm">_AD_GetAccountsExpired</a>, <a href="_AD_SetAccountExpire.htm">_AD_SetAccountExpire</a>
+<p>&nbsp;</p>
+
+<p><b>See Also</b></p>
+http://www.rlmueller.net/AccountExpires.htm<br>
+<p>&nbsp;</p>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Function _AD_ListSchemaVersions</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<h1>Function Reference</h1>
+<font size="+1">_AD_ListSchemaVersions</font>
+<hr size="2">
+<p>Returns information about the AD Schema versions.<br></p>
+
+<p class="codeheader">
+#Include &lt;AD.au3&gt;<br>
+_AD_ListSchemaVersions()<br>
+</p>
+<p>&nbsp;</p>
+
+<p><b>Parameters</b></p>
+<table border="1" width="100%" cellspacing="0" cellpadding="3" bordercolor="#C0C0C0">
+  <tr>
+    <td width="15%">None.</td>
+    <td width="85%"></td>
+  </tr>
+  <tr>
+   <td></td>
+   <td></td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<p><b>Return Value</b></p>
+Success: Returns an one-based one dimensional array of the following Schema versions.<br>
+&nbsp;&nbsp;&nbsp; 1 - Active Directory Schema version. This can be one of the following values:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;13: Windows 2000 Server<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;30: Windows Server 2003 RTM / Service Pack 1 / Service Pack 2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;31: Windows Server 2003 R2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;44: Windows Server 2008 RTM<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;47: Windows Server 2008 R2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;56: Windows Server 2012<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;69: Windows Server 2012 R2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;87: Windows Server 2016<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;88: Windows Server 2019<br>
+&nbsp;&nbsp;&nbsp; 2 - Exchange Schema version. This can be one of the following values:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4397: Exchange Server 2000 RTM<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4406: Exchange Server 2000 With Service Pack 3<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6870: Exchange Server 2003 RTM<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6936: Exchange Server 2003 With Service Pack 3<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10628: Exchange Server 2007<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11116: Exchange 2007 With Service Pack 1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;14622: Exchange 2007 With Service Pack 2, Exchange 2010 RTM<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;14625: Exchange 2007 SP3<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;14720: Exchange 2010 SP1 (beta)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;14726: Exchange 2010 SP1<br>
+&nbsp;&nbsp;&nbsp; 3 - Exchange 2000 Active Directory Connector version. This can be one of the following values:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4197: Exchange Server 2000 RTM<br>
+&nbsp;&nbsp;&nbsp; 4 - Office Communications Server Schema version. This can be one of the following values:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1006: LCS 2005 SP1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1007: OCS 2007<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1008: OCS 2007 R2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1100: Lync Server 2010<br>
+<p>&nbsp;</p>
+
+<p><b>Remarks</b></p>
+RTM stands for "Release to Manufacturing"<br>
+<br>
+<p>&nbsp;</p>
+
+<p><b>Related</b></p>
+
+<p>&nbsp;</p>
+
+<p><b>See Also</b></p>
+http://blog.dikmenoglu.de/2011/01/die-ad-und-exchange-schemaversion-abfragen/, http://www.msxfaq.de/admin/build.htm<br>
+<p>&nbsp;</p>
+</body>
+</html>

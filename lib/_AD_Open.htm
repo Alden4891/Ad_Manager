@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Function _AD_Open</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<h1>Function Reference</h1>
+<font size="+1">_AD_Open</font>
+<hr size="2">
+<p>Opens a connection to Active Directory.<br></p>
+
+<p class="codeheader">
+#Include &lt;AD.au3&gt;<br>
+_AD_Open([$sUserIdParam = "", $sPasswordParam = ""[, $sDNSDomainParam = "", $sHostServerParam = "", $sConfigurationParam = ""[, $iSecurity = 0]]])<br>
+</p>
+<p>&nbsp;</p>
+
+<p><b>Parameters</b></p>
+<table border="1" width="100%" cellspacing="0" cellpadding="3" bordercolor="#C0C0C0">
+  <tr>
+    <td width="15%">$sUserIdParam</td>
+    <td width="85%">	<b>[optional]</b> UserId credential for authentication. This has to be a valid domain user</td>
+  </tr>
+  <tr>
+   <td>$sPasswordParam</td>
+   <td>	<b>[optional]</b> Password for authentication</td>
+  </tr>
+  <tr>
+   <td>$sDNSDomainParam</td>
+   <td>	<b>[optional]</b> Active Directory domain name if you want to connect to an alternate domain e.g. DC=microsoft,DC=com</td>
+  </tr>
+  <tr>
+   <td>$sHostServerParam</td>
+   <td>	<b>[optional]</b> Name of Domain Controller if you want to connect to a different domain e.g. DC-Server1.microsoft.com<br>
+       If you want to connect to a Global Catalog append port 3268 e.g. DC-Server1.microsoft.com:3268<br>
+       You can omit the servername e.g. only specify microsoft.com if you want to access the domain root</td>
+  </tr>
+  <tr>
+   <td>$sConfigurationParam</td>
+   <td>	<b>[optional]</b> Configuration naming context if you want to connect to a different domain e.g. CN=Configuration,DC=microsoft,DC=com</td>
+  </tr>
+  <tr>
+   <td>$iSecurity</td>
+   <td>	<b>[optional]</b> Specifies the security settings to be used. This can be set from outside the script - please see Remarks.<br>
+       Can be a combination of the following:<br>
+       0: No security settings are used (default)<br>
+       1: Sets the connection property "Encrypt Password" to True to encrypt userid and password<br>
+       2: The channel is encrypted using Secure Sockets Layer (SSL). AD requires that the Certificate Server be installed to support SSL</td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<p><b>Return Value</b></p>
+Success: 1<br>
+Failure: 0, sets @error to:<br>
+&nbsp;&nbsp;&nbsp; 1 - (No longer used)<br>
+&nbsp;&nbsp;&nbsp; 2 - Creation of the COM object to the AD failed. @extended returns error code from ObjCreate<br>
+&nbsp;&nbsp;&nbsp; 3 - Open the connection to AD failed. @extended returns error code of the COM error handler.<br>
+&nbsp;&nbsp;&nbsp;     Generated if the User doesn't have query / modify access<br>
+&nbsp;&nbsp;&nbsp; 4 - Creation of the RootDSE object failed. @extended returns the error code received by the COM error handler.<br>
+&nbsp;&nbsp;&nbsp;     Generated when connection to the domain isn't successful. @extended returns -2147023541 (0x8007054B)<br>
+&nbsp;&nbsp;&nbsp; 5 - Creation of the DS object failed. @extended returns the error code received by the COM error handler<br>
+&nbsp;&nbsp;&nbsp; 6 - Parameter $sHostServerParam and $sConfigurationParam are required when $sDNSDomainParam is specified<br>
+&nbsp;&nbsp;&nbsp; 7 - Parameter $sPasswordParam is required when $sUserIdParam is specified<br>
+&nbsp;&nbsp;&nbsp; 8 - OpenDSObject method failed. @extended set to error code received from the OpenDSObject method.<br>
+&nbsp;&nbsp;&nbsp;     On Windows XP or lower this shows that $sUserIdParam and/or $sPasswordParam are invalid<br>
+&nbsp;&nbsp;&nbsp; x - For Windows Vista and later: Win32 error code (decimal). To get detailed error information call function _AD_GetLastADSIError<br>
+<p>&nbsp;</p>
+
+<p><b>Remarks</b></p>
+To close the connection to the Active Directory, use the _AD_Close function.<br>
+<br>
+_AD_Open will use the alternative credentials $sUserIdParam and $sPasswordParam if passed as parameters.<br>
+$sUserIdParam has to be in one of the following forms (assume the samAccountName = DJ)<br>
+* Windows Login Name e.g. "DJ"<br>
+* NetBIOS Login Name e.g. "<DOMAIN>\DJ"<br>
+* User Principal Name e.g. "DJ@domain.com"<br>
+All other name formats have NOT been successfully tested (see section "Link").<br>
+<br>
+Connection to an alternate domain (not the domain your computer is a member of) or if your computer is not a domain member<br>
+requires $sDNSDomainParam, $sHostServerParam and $sConfigurationParam as FQDN as well as $sUserIdParam and $sPasswordParam.<br>
+Example:<br>
+$sDNSDomainParam = "DC=subdomain,DC=example,DC=com"<br>
+$sHostServerParam = "servername.subdomain.example.com"<br>
+$sConfigurationParam = "CN=Configuration,DC=subdomain,DC=example,DC=com"<br>
+<br>
+The COM error handler will be initialized only if there doesn't already exist another error handler.<br>
+<br>
+If you specify $sUserIdParam as NetBIOS Login Name or User Principal Name and the OS is Windows Vista or later then _AD_Open will try to<br>
+verify the userid/password.<br>
+@error will be set to the Win32 error code (decimal). To get detailed error information please call _AD_GetlastADSIError.<br>
+For all other OS or if userid is specified as Windows Login Name @error=8.<br>
+This is OS dependant because Windows XP doesn't return useful error information.<br>
+For Windows Login Name all OS return success even when an error occures. This seems to be caused by secure authentification.<br>
+<br>
+$iSecurity = 2 activates LDAP/SSL. LDAP/SSL uses port 636 by default.<br>
+Note that an SSL server certificate must be configured properly in order to use SSL.<br>
+<br>
+Lately MS changed the minimum security requirements for LDAP connections.<br>
+The UDF provides several levels to set the security from outside. The levels are processed from low to high, overwriting a previously set level.<br>
+This avoids the need to modify each script.<br>
+1) AD.INI file in the AutoIt include directory with a GLOBAL section name and a SECURITY key name<br>
+2) AD.INI file in the AutoIt include directory with a <scriptname> section name and a SECURITY key name<br>
+3) AD.INI file in the working directory with a GLOBAL section name and a SECURITY key name<br>
+4) AD.INI file in the working directory directory with a <scriptname> section name and a SECURITY key name<br>
+5) Global variable $__iSecurity<br>
+<br>
+The Global variable $__iSecurity or the SECURITY key from the INI files can have the values as specified for the $iSecurity parameter.<br>
+If $iSecurity was not specified in _AD_Open then this Global values overwrite $iSecurity.<br>
+If $iSecurity was specified in _AD_Open then you need to add 16 to this Global values to overwrite $iSecurity.<br>
+<br>
+If you want to connect to a specific DC in the current domain then just provide $sHostServerParam and let $sDNSDomainParam and $sConfigurationParam be blank.<br>
+<br>
+<p>&nbsp;</p>
+
+<p><b>Related</b></p>
+<a href="_AD_Close.htm">_AD_Close</a>
+<p>&nbsp;</p>
+
+<p><b>See Also</b></p>
+http://msdn.microsoft.com/en-us/library/cc223499(PROT.10).aspx (Simple Authentication), http://msdn.microsoft.com/en-us/library/aa746471(VS.85).aspx (ADO)<br>
+<p>&nbsp;</p>
+</body>
+</html>

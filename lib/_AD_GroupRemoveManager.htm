@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Function _AD_GroupRemoveManager</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<h1>Function Reference</h1>
+<font size="+1">_AD_GroupRemoveManager</font>
+<hr size="2">
+<p>Remove the group manager from a group or only remove the manager's modify permission.<br></p>
+
+<p class="codeheader">
+#Include &lt;AD.au3&gt;<br>
+_AD_GroupRemoveManager($sGroup[, $bFlag = False])<br>
+</p>
+<p>&nbsp;</p>
+
+<p><b>Parameters</b></p>
+<table border="1" width="100%" cellspacing="0" cellpadding="3" bordercolor="#C0C0C0">
+  <tr>
+    <td width="15%">$sGroup</td>
+    <td width="85%">Groupname (sAMAccountName or FQDN)</td>
+  </tr>
+  <tr>
+   <td>$bFlag</td>
+   <td>	<b>[optional]</b> if True the function only removes the manager's modify permission</td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<p><b>Return Value</b></p>
+Success: 1<br>
+Failure: 0, @error set<br>
+&nbsp;&nbsp;&nbsp; 1 - $sGroup does not exist<br>
+&nbsp;&nbsp;&nbsp; 2 - $sGroup does not have a manager assigned<br>
+<p>&nbsp;</p>
+
+<p><b>Remarks</b></p>
+None.<br>
+<br>
+<p>&nbsp;</p>
+
+<p><b>Related</b></p>
+<a href="_AD_SetGroupManagerCanModify.htm">_AD_SetGroupManagerCanModify</a>, <a href="_AD_GroupManagerCanModify.htm">_AD_GroupManagerCanModify</a>, <a href="_AD_GroupAssignManager.htm">_AD_GroupAssignManager</a>
+<p>&nbsp;</p>
+
+</body>
+</html>

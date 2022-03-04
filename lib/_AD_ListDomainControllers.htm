@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Function _AD_ListDomainControllers</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<h1>Function Reference</h1>
+<font size="+1">_AD_ListDomainControllers</font>
+<hr size="2">
+<p>Enumerates all Domain Controllers (returns information about: Domain Controller, site, subnet and Global Catalog).<br></p>
+
+<p class="codeheader">
+#Include &lt;AD.au3&gt;<br>
+_AD_ListDomainControllers([$bListRO = False[, $bListGC = False]])<br>
+</p>
+<p>&nbsp;</p>
+
+<p><b>Parameters</b></p>
+<table border="1" width="100%" cellspacing="0" cellpadding="3" bordercolor="#C0C0C0">
+  <tr>
+    <td width="15%">$bListRO</td>
+    <td width="85%">	<b>[optional]</b> If set to True only returns RODC (read only domain controllers) (default = False)</td>
+  </tr>
+  <tr>
+   <td>$bListGC</td>
+   <td>	<b>[optional]</b> If set to True queries the DC for a Global Catalog. Disabled for performance reasons (default = False)</td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<p><b>Return Value</b></p>
+Success: One-based two dimensional array with the following information:<br>
+&nbsp;&nbsp;&nbsp; 0 - Domain Controller: Name<br>
+&nbsp;&nbsp;&nbsp; 1 - Domain Controller: Distinguished Name (FQDN)<br>
+&nbsp;&nbsp;&nbsp; 2 - Domain Controller: DNS host name<br>
+&nbsp;&nbsp;&nbsp; 3 - Site: Name<br>
+&nbsp;&nbsp;&nbsp; 4 - Site: Distinguished Name (FQDN)<br>
+&nbsp;&nbsp;&nbsp; 5 - Site: List of subnets that can connect to the site using this DC in the format x.x.x.x/mask - multiple subnets are separated by comma<br>
+&nbsp;&nbsp;&nbsp; 6 - Global Catalog: If $bListGC = True you get one of the following values:	True if the DC is a Global Catalog, False if it is no GC, "" if RootDSE of the DC could not be accessed<br>
+Failure: "", sets @error to:<br>
+&nbsp;&nbsp;&nbsp; 1 - No Domain Controllers found. @extended is set to the error returned by LDAP<br>
+<p>&nbsp;</p>
+
+<p><b>Remarks</b></p>
+This function only lists writeable DCs (default). To list RODC (read only DCs) use parameter $bListRO<br>
+<br>
+<p>&nbsp;</p>
+
+<p><b>Related</b></p>
+
+<p>&nbsp;</p>
+
+<p><b>See Also</b></p>
+http://www.rlmueller.net/Enumerate%20DCs.htm<br>
+<p>&nbsp;</p>
+</body>
+</html>

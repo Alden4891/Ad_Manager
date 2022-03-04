@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Function _AD_ModifyAttribute</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<h1>Function Reference</h1>
+<font size="+1">_AD_ModifyAttribute</font>
+<hr size="2">
+<p>Modifies an attribute of the given object to the value specified.<br></p>
+
+<p class="codeheader">
+#Include &lt;AD.au3&gt;<br>
+_AD_ModifyAttribute($sObject, $sAttribute[, $sValue = ""[, $iOption = 1]])<br>
+</p>
+<p>&nbsp;</p>
+
+<p><b>Parameters</b></p>
+<table border="1" width="100%" cellspacing="0" cellpadding="3" bordercolor="#C0C0C0">
+  <tr>
+    <td width="15%">$sObject</td>
+    <td width="85%">Object (user, group ...) to add/delete/modify an attribute (sAMAccountName or FQDN)</td>
+  </tr>
+  <tr>
+   <td>$sAttribute</td>
+   <td>Attribute to add/delete/modify</td>
+  </tr>
+  <tr>
+   <td>$sValue</td>
+   <td>	<b>[optional]</b> Value to modify the attribute to. Use a blank string ("") to delete the attribute (default).<br>
+       $sValue can be a single value (as a string) or a multi-value (as a one-dimensional zero based array)</td>
+  </tr>
+  <tr>
+   <td>$iOption</td>
+   <td>	<b>[optional]</b> Indicates the mode of modification:<br>
+       1 - CLEAR: remove all the property value(s) from the object (default when $sValue = "")<br>
+       2 - UPDATE: replace the current value(s) with the specified value(s)<br>
+       3 - APPEND: append the specified value(s) to the existing values(s)<br>
+       4 - DELETE: delete the specified value(s) from the object</td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<p><b>Return Value</b></p>
+Success: 1<br>
+Failure: 0, sets @error to:<br>
+&nbsp;&nbsp;&nbsp; 1 - $sObject does not exist<br>
+&nbsp;&nbsp;&nbsp; x - Error returned by SetInfo method (Missing permission etc.)<br>
+<p>&nbsp;</p>
+
+<p><b>Remarks</b></p>
+None.<br>
+<br>
+<p>&nbsp;</p>
+
+<p><b>Related</b></p>
+<a href="_AD_GetObjectAttribute.htm">_AD_GetObjectAttribute</a>, <a href="_AD_GetObjectProperties.htm">_AD_GetObjectProperties</a>, <a href="_AD_AddEmailAddress.htm">_AD_AddEmailAddress</a>
+<p>&nbsp;</p>
+
+<p><b>See Also</b></p>
+http://msdn.microsoft.com/en-us/library/aa746353(VS.85).aspx (ADS_PROPERTY_OPERATION_ENUM Enumeration)<br>
+<p>&nbsp;</p>
+</body>
+</html>

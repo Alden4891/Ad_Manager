@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Function _AD_GetSchemaAttributes</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<h1>Function Reference</h1>
+<font size="+1">_AD_GetSchemaAttributes</font>
+<hr size="2">
+<p>Enumerates attributes from the AD Schema (those replicated to the Global Catalog, indexed attributes or all).<br></p>
+
+<p class="codeheader">
+#Include &lt;AD.au3&gt;<br>
+_AD_GetSchemaAttributes([$iSelect = 1])<br>
+</p>
+<p>&nbsp;</p>
+
+<p><b>Parameters</b></p>
+<table border="1" width="100%" cellspacing="0" cellpadding="3" bordercolor="#C0C0C0">
+  <tr>
+    <td width="15%">$iSelect</td>
+    <td width="85%">	<b>[optional]</b> Specifies the attributes to be returned:<br>
+       1 - Return all attributes. This includes constructed attributes (default)<br>
+       2 - Return all attributes that are replicated to the Global Catalog<br>
+       3 - Return all attributes that are indexed<br>
+       4 - Return all constructed attributes</td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<p><b>Return Value</b></p>
+Success: One-based two dimensional array with the following information for all selected attributes:<br>
+&nbsp;&nbsp;&nbsp; 0 - ldapDisplayName of the attribute<br>
+&nbsp;&nbsp;&nbsp; 1 - True if the attribute is replicated to the Global Catalog, False or "" of not<br>
+&nbsp;&nbsp;&nbsp; 2 - True if the attribute is indexed. Indexed attributes give better performance<br>
+&nbsp;&nbsp;&nbsp; 3 - True if the attribute is constructed<br>
+Failure: "", sets @error to:<br>
+&nbsp;&nbsp;&nbsp; 1 - The LDAP query returned no records or another error occurred<br>
+<p>&nbsp;</p>
+
+<p><b>Remarks</b></p>
+None.<br>
+<br>
+<p>&nbsp;</p>
+
+<p><b>Related</b></p>
+
+<p>&nbsp;</p>
+
+<p><b>See Also</b></p>
+Constructed attributes: https://www.powershellmagazine.com/2013/04/25/pstip-list-all-active-directory-constructed-attributes/<br>
+<p>&nbsp;</p>
+</body>
+</html>

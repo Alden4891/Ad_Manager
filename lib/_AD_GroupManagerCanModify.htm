@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Function _AD_GroupManagerCanModify</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<h1>Function Reference</h1>
+<font size="+1">_AD_GroupManagerCanModify</font>
+<hr size="2">
+<p>Returns 1 if the manager of the group can modify the member list.<br></p>
+
+<p class="codeheader">
+#Include &lt;AD.au3&gt;<br>
+_AD_GroupManagerCanModify($sObject)<br>
+</p>
+<p>&nbsp;</p>
+
+<p><b>Parameters</b></p>
+<table border="1" width="100%" cellspacing="0" cellpadding="3" bordercolor="#C0C0C0">
+  <tr>
+    <td width="15%">$sObject</td>
+    <td width="85%">FQDN of the group</td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<p><b>Return Value</b></p>
+Success: 1, Specified user can modify the member list<br>
+Failure: 0, @error set<br>
+&nbsp;&nbsp;&nbsp; 1 - Group does not exist<br>
+&nbsp;&nbsp;&nbsp; 2 - The group manager can not modify the member list<br>
+&nbsp;&nbsp;&nbsp; 3 - There is no manager assigned to the group<br>
+<p>&nbsp;</p>
+
+<p><b>Remarks</b></p>
+None.<br>
+<br>
+<p>&nbsp;</p>
+
+<p><b>Related</b></p>
+<a href="_AD_GroupAssignManager.htm">_AD_GroupAssignManager</a>, <a href="_AD_GroupRemoveManager.htm">_AD_GroupRemoveManager</a>, <a href="_AD_SetGroupManagerCanModify.htm">_AD_SetGroupManagerCanModify</a>
+<p>&nbsp;</p>
+
+</body>
+</html>

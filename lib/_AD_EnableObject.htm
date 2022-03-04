@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Function _AD_EnableObject</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<h1>Function Reference</h1>
+<font size="+1">_AD_EnableObject</font>
+<hr size="2">
+<p>Enables an AD object (user account, computer account).<br></p>
+
+<p class="codeheader">
+#Include &lt;AD.au3&gt;<br>
+_AD_EnableObject($sObject)<br>
+</p>
+<p>&nbsp;</p>
+
+<p><b>Parameters</b></p>
+<table border="1" width="100%" cellspacing="0" cellpadding="3" bordercolor="#C0C0C0">
+  <tr>
+    <td width="15%">$sObject</td>
+    <td width="85%">User account or computer account to enable (sAMAccountName or FQDN)</td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<p><b>Return Value</b></p>
+Success: 1<br>
+Failure: 0, sets @error to:<br>
+&nbsp;&nbsp;&nbsp; 1 - $sObject does not exist<br>
+&nbsp;&nbsp;&nbsp; x - Error returned by SetInfo method (Missing permission etc.)<br>
+<p>&nbsp;</p>
+
+<p><b>Remarks</b></p>
+None.<br>
+<br>
+<p>&nbsp;</p>
+
+<p><b>Related</b></p>
+<a href="_AD_IsObjectDisabled.htm">_AD_IsObjectDisabled</a>, <a href="_AD_DisableObject.htm">_AD_DisableObject</a>, <a href="_AD_GetObjectsDisabled.htm">_AD_GetObjectsDisabled</a>
+<p>&nbsp;</p>
+
+<p><b>See Also</b></p>
+http://www.wisesoft.co.uk/scripts/vbscript_enable-disable_user_account_1.aspx<br>
+<p>&nbsp;</p>
+</body>
+</html>

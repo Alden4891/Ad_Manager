@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Function _AD_RecursiveGetGroupMembers</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<h1>Function Reference</h1>
+<font size="+1">_AD_RecursiveGetGroupMembers</font>
+<hr size="2">
+<p>Takes a group and recursively returns a list of groups and members of the group.<br></p>
+
+<p class="codeheader">
+#Include &lt;AD.au3&gt;<br>
+_AD_RecursiveGetGroupMembers($sGroup[, $iDepth = 10[, $bListInherited = True[, $bFQDN = True]]])<br>
+</p>
+<p>&nbsp;</p>
+
+<p><b>Parameters</b></p>
+<table border="1" width="100%" cellspacing="0" cellpadding="3" bordercolor="#C0C0C0">
+  <tr>
+    <td width="15%">$sGroup</td>
+    <td width="85%">Group for which the members should to be returned. Can be specified as Fully Qualified Domain Name (FQDN) or sAMAccountName</td>
+  </tr>
+  <tr>
+   <td>$iDepth</td>
+   <td>	<b>[optional]</b> Maximum depth of recursion (default = 10)</td>
+  </tr>
+  <tr>
+   <td>$bListInherited</td>
+   <td>	<b>[optional]</b> Defines if the function returns the group it is a member of (default = True)</td>
+  </tr>
+  <tr>
+   <td>$bFQDN</td>
+   <td>	<b>[optional]</b> Specifies the attribute to be returned. True = distinguishedName (FQDN), False = SamAccountName (default = True)</td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<p><b>Return Value</b></p>
+Success: Returns an one-based one dimensional array of group or member names (FQDN or sAMAccountName)<br>
+Failure: "", sets @error to:<br>
+&nbsp;&nbsp;&nbsp; 1 - Specified group does not exist<br>
+<p>&nbsp;</p>
+
+<p><b>Remarks</b></p>
+This function traverses the groups in the specified group until the maximum depth is reached.<br>
+if $bListInherited = True the return is the FQDN or sAMAccountname of the group or member and the FQDN(s) or sAMAccountname(s) of the group it<br>
+is a member of, seperated by '|'(s) if flag $bListInherited is set to True.<br>
+<br>
+If flag $bListInherited is set to False then the group/member names are sorted and only unique entries are returned.<br>
+<br>
+<p>&nbsp;</p>
+
+<p><b>Related</b></p>
+<a href="_AD_GetGroupMembers.htm">_AD_GetGroupMembers</a>
+<p>&nbsp;</p>
+
+</body>
+</html>

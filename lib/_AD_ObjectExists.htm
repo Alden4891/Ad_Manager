@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Function _AD_ObjectExists</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<h1>Function Reference</h1>
+<font size="+1">_AD_ObjectExists</font>
+<hr size="2">
+<p>Returns 1 if exactly one object exists for the given property in the local Active Directory Tree.<br></p>
+
+<p class="codeheader">
+#Include &lt;AD.au3&gt;<br>
+_AD_ObjectExists([$sObject = @UserName[, $sProperty = ""]])<br>
+</p>
+<p>&nbsp;</p>
+
+<p><b>Parameters</b></p>
+<table border="1" width="100%" cellspacing="0" cellpadding="3" bordercolor="#C0C0C0">
+  <tr>
+    <td width="15%">$sObject</td>
+    <td width="85%">	<b>[optional]</b> Object (user, computer, group, OU) to check (default = @UserName)</td>
+  </tr>
+  <tr>
+   <td>$sProperty</td>
+   <td>	<b>[optional]</b> Property to check. If omitted the function tries to determine whether to use sAMAccountname or FQDN</td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<p><b>Return Value</b></p>
+Success: 1, Exactly one object exists for the given property in the local Active Directory Tree<br>
+Failure: 0, sets @error to:<br>
+&nbsp;&nbsp;&nbsp; 1 - No object found for the specified property<br>
+&nbsp;&nbsp;&nbsp; x - More than one object found for the specified property. x is the number of objects found<br>
+<p>&nbsp;</p>
+
+<p><b>Remarks</b></p>
+Checking on a computer account requires a "$" (dollar) appended to the sAMAccountName.<br>
+To check the existence of an OU use the FQDN of the OU as first parameter because an OU has no SamAccountName.<br>
+<br>
+<p>&nbsp;</p>
+
+<p><b>Related</b></p>
+
+<p>&nbsp;</p>
+
+</body>
+</html>

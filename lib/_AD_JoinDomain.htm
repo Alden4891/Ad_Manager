@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Function _AD_JoinDomain</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <link href="../css/default.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<h1>Function Reference</h1>
+<font size="+1">_AD_JoinDomain</font>
+<hr size="2">
+<p>Joins a computer to a domain.<br></p>
+
+<p class="codeheader">
+#Include &lt;AD.au3&gt;<br>
+_AD_JoinDomain([$sComputer = @ComputerName[, $sUserParam = "", $sPasswordParam = ""[, $sOU = ""[, $iFlag = 1[, $sNewName = ""]]]]])<br>
+</p>
+<p>&nbsp;</p>
+
+<p><b>Parameters</b></p>
+<table border="1" width="100%" cellspacing="0" cellpadding="3" bordercolor="#C0C0C0">
+  <tr>
+    <td width="15%">$sComputer</td>
+    <td width="85%">	<b>[optional]</b> Name of the computer to be joined to the domain (Default = @ComputerName)</td>
+  </tr>
+  <tr>
+   <td>$sUserParam</td>
+   <td>	<b>[optional]</b> Domain user with admin rights to join the computer to the domain.<br>
+       Supported are NetBIOSName (domain\user), user principal name (user@domain) or Windows login name (user).<br>
+       (Default = credentials from _AD_Open or - if not used - of the user running the script)</td>
+  </tr>
+  <tr>
+   <td>$sPasswordParam</td>
+   <td>	<b>[optional]</b> Password for $sUserParam (Default = credentials from _AD_Open or - if not used - of the user running the script)</td>
+  </tr>
+  <tr>
+   <td>$sOU</td>
+   <td>	<b>[optional]</b> FQDN of the OU where the computer will be placed. (Default = Keyword Default = Computers container)</td>
+  </tr>
+  <tr>
+   <td>$iFlag</td>
+   <td>	<b>[optional]</b> A set of bit flags (means: add the numbers for any valid combination) that specify options for joining a domain. Some of the possible flags:<br>
+       1 - Joins a computer to a domain. Computer account must already exist in the domain (Default)<br>
+       2 - Creates an account on a domain<br>
+       32 - Allows a join to a new domain even if the computer is already joined to a domain</td>
+  </tr>
+  <tr>
+   <td>$sNewname</td>
+   <td>	<b>[optional]</b> Name to change the computer to after joining to the domain.</td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<p><b>Return Value</b></p>
+Success: 1, sets @extended to the return value of the JoinDomainOrWorkgroup method:<br>
+&nbsp;&nbsp;&nbsp; 0 - indicates successful completion. No reboot required.<br>
+&nbsp;&nbsp;&nbsp; 1 - indicates successful completion with reboot required.<br>
+Failure: 0, @error set<br>
+&nbsp;&nbsp;&nbsp; 1 - $sComputer account does not exist in the domain and $iFlag <> 2<br>
+&nbsp;&nbsp;&nbsp; 2 - $sUserParam does not exist in the domain<br>
+&nbsp;&nbsp;&nbsp; 3 - WMI object could not be created. See @extended for error code. See remarks for further information<br>
+&nbsp;&nbsp;&nbsp; 4 - The computer is already a member of the domain<br>
+&nbsp;&nbsp;&nbsp; 5 - Joining the domain was not successful. @extended holds the Win32 error code (see: http://msdn.microsoft.com/en-us/library/ms681381(v=VS.85).aspx)<br>
+&nbsp;&nbsp;&nbsp; 6 - $sNewName account already exists. You can't rename $sComputer to $sNewName<br>
+&nbsp;&nbsp;&nbsp; 7 - Computer could not be renamed. See @extended for the COM error code.<br>
+<p>&nbsp;</p>
+
+<p><b>Remarks</b></p>
+This function allows to join the computer the script is running on or any other computer to be joined to a domain.<br>
+The domain the computer is joined to is the domain the user logged on to by using AD_Open.<br>
+If no credentials are passed to this function but have been used with _AD_Open() then the _AD_Open credentials will be used.<br>
+Using default credentials of the user running the script is only sensible when you are logged on to the domain and try to join another computer.<br>
+You have to make sure to use a valid $iFlag. The function does not check it. Most used are 1 (join) and 3 (create computer account and join).<br>
+You have to reboot the computer after a successful join to the domain.<br>
+The JoinDomainOrWorkgroup method is available only on Windows XP computer and Windows Server 2003 or later.<br>
+<br>
+<p>&nbsp;</p>
+
+<p><b>Related</b></p>
+<a href="_AD_CreateComputer.htm">_AD_CreateComputer</a>
+<p>&nbsp;</p>
+
+<p><b>See Also</b></p>
+http://technet.microsoft.com/en-us/library/ee692588.aspx, http://msdn.microsoft.com/en-us/library/aa392154(VS.85).aspx<br>
+<p>&nbsp;</p>
+</body>
+</html>
